@@ -14,27 +14,7 @@ def load_sample(name, *dirs):
         raise FileNotFoundError('sample name: {}'.format(name))
     return AudioSegment.from_file(found[0])
 
-#def load_samples(name, *dirs):
-    #found = find_sample_files(name, *dirs)
-    #samples = [AudioSegment.from_file(f) for f in found]
-    #return samples
-
-#def make_advanced_instrument(name, voice):
-    #samples = {char: find_samples(smpl_id) for char, smpl_id in voice.items()}
-    #return samples
-
-#def find_sample(name, glb=None):
-    #if glb is None:
-        #args = (name,)
-    #else:
-        #args = (name, glb)
-    #return find_samples(*args)[0]
-
-def make_simple_instrument(name, voice):
-    samples = {char: load_sample(smpl_id) for char, smpl_id in voice.items()}
-    return samples
-
-from operator import itemgetter
+#from operator import itemgetter
 
 def render_to_pydub(flat_song, instruments):
     END_BUFFER = 7

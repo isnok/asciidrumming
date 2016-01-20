@@ -10,20 +10,22 @@ SAMPLE_LOOKUP = (
 )
 
 CONFIG_LOOKUP = (
-    os.curdir,
-    os.path.join(os.curdir, 'samples'),
-    os.path.join(LIB_DIR, 'default')
+    os.path.join(LIB_DIR, 'default'),
 )
 
-def find_files(name, *dirs):
+def find_files(name, fmt, *dirs):
     found = []
     if not dirs:
         dirs = '.'
     for dir in dirs:
-        glb = os.path.join(dir, name + '*')
+        glb = os.path.join(dir, fmt.format(name))
         found.extend(glob(glb))
     return found
 
 def find_sample_files(name, *dirs):
     global SAMPLE_LOOKUP
-    return find_files(name, *(SAMPLE_LOOKUP + dirs))
+    return find_files(name, '{}*', *(SAMPLE_LOOKUP + dirs))
+
+def find_config_files(name, *dirs):
+    global CONFIG_LOOKUP
+    return find_files(name, '{}', *(CONFIG_LOOKUP + dirs))

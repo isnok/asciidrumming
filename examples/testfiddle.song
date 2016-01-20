@@ -36,56 +36,6 @@ D..k
 dkdk
 D.r.
 
-[voices]
-
-# shime set
-shime_s: shime1
-shime_z: shime2
-shime_S: shime3
-shime_d: shime1
-shime_k: shime2
-shime_D: shime3
-
-# taiko set
-taiko_d: taiko4
-taiko_k: taiko2
-taiko_D: taiko3
-taiko_K: taiko5
-taiko_r: rim
-taiko_c: click
-
-# possibly new taiko stuff
-taiko_b: bachi_click
-
-taiko_:: sa
-
-# other set
-other_d: taiko_don_4
-other_k: taiko_don_2
-other_D: taiko_don_3
-other_K: taiko_don_5
-#other_r: rim
-#other_c: click
-
-
-# spoken set
-spoken_d: spoken_do_3
-spoken_k: spoken_ko_2
-spoken_D: spoken_don_2
-spoken_K: spoken_kon_2
-
-odaiko_d: odaiko_1
-odaiko_k: odaiko_2
-odaiko_D: odaiko_3
-odaiko_K: odaiko_4
-#odaiko_r: wood_click_1
-odaiko_r: kakegoe_hep_1
-
-okaido_d: okaido_1
-okaido_k: okaido_2
-okaido_D: okaido_3
-okaido_K: okaido_4
-
 [verses]
 
 okaido: 4_dondoko
@@ -113,3 +63,58 @@ okaido: 4_dondoko
 --
 bpm: +20
 okaido: 4_dondoko
+
+
+
+
+
+
+[voices]
+
+# shime set
+#shime_s: shime1
+#shime_z: shime2
+#shime_S: shime3
+#shime_d: shime1
+#shime_k: shime2
+#shime_D: shime3
+#
+## taiko set
+#taiko_d: taiko4
+#taiko_k: taiko2
+#taiko_D: taiko3
+#taiko_K: taiko5
+#taiko_r: rim
+#taiko_c: click
+#
+## possibly new taiko stuff
+#taiko_b: bachi_click
+#
+#taiko_:: sa
+
+# other set
+other_d: taiko_don_4
+other_k: taiko_don_2
+other_D: taiko_don_3
+other_K: taiko_don_5
+#other_r: rim
+#other_c: click
+
+
+# spoken set
+spoken_d: spoken_do_3
+spoken_k: spoken_ko_2
+spoken_D: spoken_don_2
+spoken_K: spoken_kon_2
+
+odaiko_d: odaiko_1
+odaiko_k: odaiko_2
+odaiko_D: odaiko_3
+odaiko_K: odaiko_4
+#odaiko_r: wood_click_1
+odaiko_r: kakegoe_hep_1
+
+okaido_d: okaido_1
+okaido_k: okaido_2
+okaido_D: okaido_3
+okaido_K: okaido_4

@@ -13,22 +13,21 @@ from .assemble import render_verses
 from .sample import render_to_pydub
 from .sample import play
 
+from .voice import load_voices
+
 @click.command()
 @click.option('--bpm', default=-1, help='base beats per minute')
 @click.option('--output', default=None, help='output file to write')
+@click.option('--voices', default='drumset.yaml', help='yaml voice configuration file (updates defaults)')
 @click.option('--silent', type=bool, default=False, help='do not play the song immediatley')
 @click.argument('composition')
-def main(bpm, composition, silent, output=None):
+def main(bpm, composition, voices, silent, output=None):
     config = parse_composition(composition)
     if bpm > 0:
         config['initial']['bpm'] = bpm
     pprint.pprint(config)
 
-    #instruments = {
-        #name: make_simple_instrument(name, voice)
-        #for name, voice in config['voices'].items()
-    #}
-    #pprint.pprint(instruments)
+    pprint.pprint(load_voices(voices))
 
     song = assemble_verses(config)
     pprint.pprint(song)
