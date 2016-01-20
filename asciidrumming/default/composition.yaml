@@ -1,0 +1,50 @@
+initial:
+    bpm: 60
+    #shuffle: false
+
+phrases:
+
+    pause:
+        beat: 1
+        pattern: .
+
+    don:
+        beat: 4
+        pattern: D...
+
+    donkon:
+        beat: 4
+        pattern: D.K.
+
+    dokodoko:
+        beat: 4
+        pattern: dkdk
+
+    dondoko:
+        beat: 4
+        pattern: D.dk
+
+    dokonko:
+        beat: 4
+        pattern: Dk.k
+
+    _2_trioles:
+        beat: 3
+        pattern: dkd kdk
+
+    damdamdam:
+        beat: 4
+        pattern: D.K. D..k dkdk D.r.
+
+pieces:
+
+    _4_dondoko: dondoko * 4
+    _4_dokonko: dokonko * 4
+    fuchi: dondoko * 3 + dokonko
+    _4_trioles: _2_trioles * 2
+
+verses:
+    - taiko: fuchi
+    - taiko: fuchi
+    - taiko: don
+

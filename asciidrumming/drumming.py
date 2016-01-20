@@ -21,7 +21,7 @@ from .voice import load_voices
 @click.option('--output', default=None, help='output file to write')
 @click.option('--voices', default='drumset.yaml', help='yaml voice configuration file (updates defaults)')
 @click.option('--silent', type=bool, default=False, help='do not play the song immediatley')
-@click.argument('composition')
+@click.argument('composition', default='composition.yaml')
 def main(bpm, composition, voices, silent, output=None):
     import yaml
     config = yaml.load(open(composition))

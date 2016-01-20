@@ -15,12 +15,30 @@ def clean_phrases(phrases):
     for phrase in phrases.values():
         phrase['pattern'] = phrase['pattern'].replace(' ', '')
 
+from .config import find_config_files
+import yaml
+
+def load_phrases(name):
+    files = find_config_files(name)
+    phrases = {}
+    pieces = {}
+    for name in reversed(files):
+        with open(name) as fh:
+            cfg = yaml.load(fh)
+            phrases.update(cfg['phrases'])
+            pieces.update(cfg['pieces'])
+    return phrases, pieces
+
 def assemble_phrases(config):
-    pieces = config.pop('pieces')
-    phrases = config['phrases']
+    phrases, pieces = load_phrases('phrases.yaml')
+    if 'pieces' in config:
+        pieces.update(config.pop('pieces'))
+    phrases.update(config.get('phrases', {}))
     pieces = assemble_pieces(phrases, pieces)
     phrases.update(pieces)
     clean_phrases(phrases)
+    config['phrases'] = phrases
+
 
 
 def assemble_verses(composition):
