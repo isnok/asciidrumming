@@ -34,7 +34,18 @@ phrases:
 
 pieces:
 
+    _2_pause: pause * 2
+    _4_pause: pause * 4
+    _8_pause: pause * 8
+
+    _2_dondoko: dondoko * 2
     _4_dondoko: dondoko * 4
+    _8_dondoko: dondoko * 8
+
+    _2_dokonko: dokonko * 2
     _4_dokonko: dokonko * 4
+    _8_dokonko: dokonko * 8
+
     fuchi: dondoko * 3 + dokonko
+
     _4_trioles: _2_trioles * 2
