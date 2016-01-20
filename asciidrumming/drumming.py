@@ -3,15 +3,15 @@
 import click
 import pprint
 
-from parse import parse_composition
+from .parse import parse_composition
 #from sample import make_simple_instrument
 #from sample import make_advanced_instrument
 
-from assemble import assemble_verses
-from assemble import render_verses
+from .assemble import assemble_verses
+from .assemble import render_verses
 
-from sample import render_to_pydub
-from sample import play
+from .sample import render_to_pydub
+from .sample import play
 
 @click.command()
 @click.option('--bpm', default=-1, help='base beats per minute')
