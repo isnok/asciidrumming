@@ -1,0 +1,62 @@
+[initial] # default, but a good test case
+
+bpm: 60
+
+#shuffle: false
+
+[phrases]
+
+4_dondoko: beat=4
+D.dkD.dk
+D.dkD.dk
+
+dondoko: beat=4
+D.dk
+
+dokonko: beat=4
+Dk.k
+
+4_dokonko: beat=4
+Dk.kDk.k
+Dk.kDk.k
+
+shuffle: beat=4 shuffle=0.1
+d.k.
+d.k.
+d.k.
+d.k.
+
+4_trioles: beat=3
+dkd kdk
+dkd kdk
+
+damdamdam: beat=4
+D.K.
+D..k
+dkdk
+D.r.
+
+[verses]
+
+taiko: 4_dondoko
+--
+taiko: 4_dondoko
+--
+shime: 4_dondoko
+taiko: 4_dondoko
+--
+shime: 4_dokonko
+--
+shime: 4_trioles
+--
+shime: 4_dondoko
+--
+taiko: 4_dokonko
+shime: 4_dondoko
+--
+bpm: +20
+taiko: 4_dondoko
+shime: 4_dokonko
+--
+shime: 4_dondoko
+taiko: 4_dondoko

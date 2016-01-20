@@ -7,6 +7,7 @@ from .parse import parse_composition
 #from sample import make_simple_instrument
 #from sample import make_advanced_instrument
 
+from .assemble import assemble_phrases
 from .assemble import assemble_verses
 from .assemble import render_verses
 
@@ -22,12 +23,15 @@ from .voice import load_voices
 @click.option('--silent', type=bool, default=False, help='do not play the song immediatley')
 @click.argument('composition')
 def main(bpm, composition, voices, silent, output=None):
-    config = parse_composition(composition)
+    import yaml
+    config = yaml.load(open(composition))
+    #config = parse_composition(composition)
     if bpm > 0:
         config['initial']['bpm'] = bpm
-    pprint.pprint(config)
+    config.update(load_voices(voices))
 
-    pprint.pprint(load_voices(voices))
+    assemble_phrases(config)
+    pprint.pprint(config)
 
     song = assemble_verses(config)
     pprint.pprint(song)

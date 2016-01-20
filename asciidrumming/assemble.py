@@ -1,3 +1,28 @@
+def assemble_pieces(phrases, pieces):
+    env = {k: v['pattern'] for k, v in phrases.items()}
+    assembled = {}
+    for name, term in pieces.items():
+        for word in term.split():
+            if word in env:
+                beat = phrases[word]['beat']
+                break
+        else:
+            raise RuntimeError('invalid piece: {}'.format(term))
+        assembled[name] = dict(beat=beat, pattern=eval(term, env))
+    return assembled
+
+def clean_phrases(phrases):
+    for phrase in phrases.values():
+        phrase['pattern'] = phrase['pattern'].replace(' ', '')
+
+def assemble_phrases(config):
+    pieces = config.pop('pieces')
+    phrases = config['phrases']
+    pieces = assemble_pieces(phrases, pieces)
+    phrases.update(pieces)
+    clean_phrases(phrases)
+
+
 def assemble_verses(composition):
     effective = {
         'bpm': 80,
