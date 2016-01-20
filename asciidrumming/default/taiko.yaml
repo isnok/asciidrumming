@@ -1,0 +1,16 @@
+voices:
+    # shime set
+    shime:
+        d: shime1
+        k: shime2
+        D: shime3
+        K: shime3
+        r: click
+
+    # taiko set
+    taiko:
+        d: taiko4
+        k: taiko2
+        D: taiko3
+        K: taiko5
+        r: rim

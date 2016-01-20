@@ -1,0 +1,20 @@
+voices:
+    # shime set
+    shime:
+        s: shime1
+        z: shime2
+        S: shime3
+        d: shime1
+        k: shime2
+        D: shime3
+
+    # taiko set
+    taiko:
+        d: taiko4
+        k: taiko2
+        D: taiko3
+        K: taiko5
+        r: rim
+        #c: click
+        #b: bachi_click
+        #:: sa
