@@ -21,7 +21,7 @@ setup(
     zip_safe=False,
     install_requires=read_requirements(),
     entry_points = {
-        'console_scripts': ['ascii_drummer=asciidrumming.cli:main'],
+        'console_scripts': ['ascii_drummer=asciidrumming.cli:cli'],
     },
     include_package_data=True,
 )

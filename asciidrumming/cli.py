@@ -12,19 +12,31 @@ from .assemble import assemble_verses
 from .assemble import render_verses
 
 from .sample import render_to_pydub
-from .sample import play
+from .sample import play as play_song
 
 from .voice import load_voices
 
-@click.command()
+from .config import yamload
+
+@click.group()
+def cli(**kwd):
+    return kwd
+
+
+@cli.command()
+def drum():
+    ''' soon to come: play strings from the command-line'''
+
+@cli.command()
 @click.option('--bpm', default=-1, help='base beats per minute')
 @click.option('--output', default=None, help='output file to write')
 @click.option('--voices', default='drumset.yaml', help='yaml voice configuration file (updates defaults)')
 @click.option('--silent', type=bool, default=False, help='do not play the song immediatley')
-@click.argument('composition', default='composition.yaml')
-def main(bpm, composition, voices, silent, output=None):
-    import yaml
-    config = yaml.load(open(composition))
+@click.argument('composition', default=None)
+def play(bpm, composition, voices, silent, output=None):
+
+    config = yamload(composition)
+
     #config = parse_composition(composition)
     if bpm > 0:
         config['initial']['bpm'] = bpm
@@ -44,7 +56,7 @@ def main(bpm, composition, voices, silent, output=None):
         song_segment.export(output)
 
     if not silent:
-        play(song_segment)
+        play_song(song_segment)
 
 if __name__ == '__main__':
-    main()
+    cli()

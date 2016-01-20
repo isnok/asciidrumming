@@ -16,17 +16,16 @@ def clean_phrases(phrases):
         phrase['pattern'] = phrase['pattern'].replace(' ', '')
 
 from .config import find_config_files
-import yaml
+from .config import yamload
 
 def load_phrases(name):
     files = find_config_files(name)
     phrases = {}
     pieces = {}
     for name in reversed(files):
-        with open(name) as fh:
-            cfg = yaml.load(fh)
-            phrases.update(cfg['phrases'])
-            pieces.update(cfg['pieces'])
+        cfg = yamload(name)
+        phrases.update(cfg['phrases'])
+        pieces.update(cfg['pieces'])
     return phrases, pieces
 
 def assemble_phrases(config):

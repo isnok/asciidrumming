@@ -29,3 +29,9 @@ def find_sample_files(name, *dirs):
 def find_config_files(name, *dirs):
     global CONFIG_LOOKUP
     return find_files(name, '{}', *(CONFIG_LOOKUP + dirs))
+
+import yaml
+def yamload(name):
+    with open(name) as fh:
+        yamyam = yaml.load(fh)
+    return yamyam
