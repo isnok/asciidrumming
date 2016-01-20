@@ -11,7 +11,7 @@ def read_requirements(name='requirements.txt'):
 
 setup(
     name='asciidrumming',
-    version='0.0.2',
+    version='0.1',
     description='Ascii-based (drum-)sequencer.',
     url='http://github.com/isnok/asciidrumming',
     author='Konstantin Martini',
@@ -21,7 +21,7 @@ setup(
     zip_safe=False,
     install_requires=read_requirements(),
     entry_points = {
-        'console_scripts': ['ascii_drummer=asciidrumming.drumming:main'],
+        'console_scripts': ['ascii_drummer=asciidrumming.cli:main'],
     },
     include_package_data=True,
 )
