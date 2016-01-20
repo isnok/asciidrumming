@@ -1,3 +1,4 @@
+import os
 from glob import glob
 from pydub import AudioSegment
 from pydub import playback
@@ -6,7 +7,10 @@ play = playback.play
 silence = AudioSegment.silent
 
 def find_samples(name, glb='samples/{name}*'):
-    found = glob(glb.format(name=name))
+    glb = glb.format(name=name)
+    found = glob(glb)
+    glb = os.path.join(os.path.dirname(__file__), glb)
+    found += glob(glb)
     samples = [AudioSegment.from_file(f) for f in found]
     return samples
 

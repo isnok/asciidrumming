@@ -23,4 +23,5 @@ setup(
     entry_points = {
         'console_scripts': ['ascii_drummer=asciidrumming.drumming:main'],
     },
+    include_package_data=True,
 )
