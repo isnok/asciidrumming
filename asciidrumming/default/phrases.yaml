@@ -60,14 +60,22 @@ pieces:
     _8_pause: pause * 8
 
     _2_dondoko: dondoko * 2
+    _3_dondoko: dondoko * 3
     _4_dondoko: dondoko * 4
     _8_dondoko: dondoko * 8
 
     _2_dokonko: dokonko * 2
+    _3_dokonko: dokonko * 3
     _4_dokonko: dokonko * 4
     _8_dokonko: dokonko * 8
 
+    _2_dokodoko: dokodoko * 2
+    _3_dokodoko: dokodoko * 3
+    _4_dokodoko: dokodoko * 4
+    _8_dokodoko: dokodoko * 8
+
     _2_shuffle: shuffle * 2
+    _3_shuffle: shuffle * 3
     _4_shuffle: shuffle * 4
     _8_shuffle: shuffle * 4
 

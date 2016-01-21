@@ -1,0 +1,66 @@
+initial:
+
+    bpm: 60
+
+phrases:
+
+    damdamdam:
+        beat: 4
+        pattern:
+            - D.K. D..k dkdk D.r.
+
+    shime:
+        beat: 4
+        pattern:
+            - D.rr D.rr D.rr dkdk
+
+    shime_end:
+        beat: 4
+        pattern:
+            - D.rr D.rr D.rr dkD.
+
+    mia:
+        beat: 4
+        pattern:
+            - :.dk :.dk dk.k D.r.
+
+pieces:
+
+    _4_damdamdam: damdamdam * 4
+    _4_shime: shime * 4
+    _4_shime_end: shime * 3 + shime_end
+    _4_mia: mia * 4
+
+
+verses:
+
+    - shime: _4_shime
+
+    - shime: _4_shime
+      taiko: _4_damdamdam
+
+    - shime: _4_shime
+      taiko: _4_damdamdam
+      other: _4_mia
+
+    - shime: _4_dokodoko
+      taiko: _4_damdamdam
+      other: _4_mia
+
+    - shime: _4_dokodoko
+      taiko: _4_dokodoko
+      other: _4_mia
+
+    - shime: _4_dokodoko
+      taiko: _4_dokodoko
+      other: _4_dokodoko
+
+    - shime: _4_shime_end
+      taiko: _4_damdamdam
+      other: _4_mia
+
+    - metronome: pause
+
+    - shime: _4_shime_end
+      taiko: _4_damdamdam
+      other: _4_mia

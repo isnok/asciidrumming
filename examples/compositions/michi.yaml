@@ -1,0 +1,53 @@
+initial:
+
+    bpm: 60
+
+phrases:
+
+    solo:
+        beat: 4
+        pattern:
+            - D... D.K. DK.. DK..
+            - D... D.K. Dk.k .kD.
+            - .kd. dk:. .kd. dk:.
+            - .kd. dk.k .k.k D.r.
+
+    solo_end:
+        beat: 4
+        pattern:
+            - D... D.K. DK.. DK..
+            - D... D.K. Dk.k .kD.
+            - :kd. dk.. :kd. dk..
+            - dkdk dkdk dkdk dkD.
+
+    doko:
+        beat: 4
+        pattern: d.k.
+
+    berg:
+        beat: 4
+        pattern:
+            - d.rr dkrr dk.k d.rr
+pieces:
+
+    _4_solo: 4 * solo
+    #_4_solo_end: 3 * solo + solo_end
+    _4_berg: 4 * berg
+    zwischenteil: doko * 4 + dokodoko * 8
+
+
+verses:
+
+    #- taiko: solo
+    #- taiko: _4_berg
+
+    - taiko: _4_solo
+    - taiko: zwischenteil
+
+    - taiko: _4_solo
+    - taiko: _4_berg
+    - taiko: _4_berg
+    - taiko: _4_berg
+
+    - taiko: _4_solo
+    - taiko: solo_end
