@@ -2,6 +2,12 @@ voices:
 
     metronome:
         c: click + 7
+        d: click + 7
+        k: click + 7
+        D: click + 7
+        K: click + 7
+        r: click + 7
+        :: click + 7
 
     # shime set
     shime:
