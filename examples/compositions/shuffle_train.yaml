@@ -1,0 +1,28 @@
+initial:
+
+    bpm: 80
+
+phrases:
+
+    shuffle_train_1:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - DK dk Dk Dk
+
+    shuffle_train_2:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - dK dk Dk Dk
+
+pieces:
+
+    shuffle_train: ( shuffle_train_1 + shuffle_train_2 ) * 2
+
+verses:
+    - taiko: _4_shuffle
+    - taiko: _4_pause
+    - taiko: shuffle_train
+    - taiko: _4_pause
+    - taiko: shuffle_train

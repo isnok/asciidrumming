@@ -14,3 +14,11 @@ voices:
         D: taiko5 + 5
         K: taiko5 + 5
         r: rim
+
+    # other set
+    other:
+        d: taiko3
+        k: taiko3
+        D: taiko4 + 6
+        K: taiko4 + 6
+        r: rim
