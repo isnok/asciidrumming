@@ -1,0 +1,52 @@
+initial:
+
+    bpm: 60
+
+phrases:
+
+    fuchi2:
+        beat: 4
+        pattern: r.dk D.dk r.dk Dk.k
+
+    dokara:
+        beat: 4
+        pattern: Dkrk
+
+    tokio:
+        beat: 4
+        pattern:
+            - dkd. Dk.k dkd. DK..
+            - D... .K.D ...D K...
+
+pieces:
+
+    fuchi: dondoko * 3 + dokonko
+    _2_fuchi: fuchi * 2
+    _3_fuchi: fuchi * 3
+    _4_fuchi: fuchi * 4
+
+    _2_fuchi2: fuchi2 * 2
+    _3_fuchi2: fuchi2 * 3
+    _4_fuchi2: fuchi2 * 4
+
+    _2_dokara: dokara * 2
+    _3_dokara: dokara * 3
+    _4_dokara: dokara * 4
+
+    _12_dokara: dokara * 12
+    shime: _12_dokara + fuchi2
+
+    _2_tokio: tokio * 2
+
+verses:
+
+    - taiko: pause
+    - taiko: _3_fuchi2
+
+    - taiko: _4_fuchi2
+    - taiko: shime
+    - taiko: _2_tokio
+
+    - taiko: _4_fuchi2
+    - taiko: shime
+    - taiko: _2_tokio

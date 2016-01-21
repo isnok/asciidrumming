@@ -39,12 +39,10 @@ def assemble_pieces(phrases, pieces):
 
     return assembled
 
-from math import ceil
-
 def clean_phrases(phrases):
     for phrase in phrases.values():
         phrase['pattern'] = ''.join(phrase['pattern']).replace(' ', '')
-        phrase['length'] = int(ceil(len(phrase['pattern']) / float(phrase['beat'])))
+        phrase['length'] = (len(phrase['pattern']) // phrase['beat']) + bool(len(phrase['pattern']) % phrase['beat'])
 
 
 def assemble_phrases(config):
