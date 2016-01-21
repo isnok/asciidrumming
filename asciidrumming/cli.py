@@ -25,7 +25,7 @@ def cli(**kwd):
 
 @cli.command()
 def drum():
-    ''' soon to come: play strings from the command-line'''
+    ''' soon to come: play strings from the command-line '''
 
 @cli.command()
 @click.option('--bpm', default=-1, help='base beats per minute')
@@ -49,7 +49,7 @@ def play(bpm, composition, voices, silent, output=None):
     pprint.pprint(song)
 
     rendering = render_verses(song, now=1)
-    #pprint.pprint(rendering)
+    click.echo('Rendering: {} samples...'.format(len(rendering)))
 
     song_segment = render_to_pydub(rendering, config['voices'])
     if output is not None:

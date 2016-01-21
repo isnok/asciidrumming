@@ -9,8 +9,8 @@ voices:
 
     # taiko set
     taiko:
-        d: taiko4
+        d: taiko2
         k: taiko2
-        D: taiko3
-        K: taiko5
+        D: taiko5 + 5
+        K: taiko5 + 5
         r: rim

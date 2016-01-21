@@ -24,9 +24,14 @@ def render_to_pydub(flat_song, instruments):
     length = (flat_song[-1][0] + END_BUFFER) * FACTOR
     recording = silence(length)
     for ts, (instr, char) in flat_song:
-        sound = load_sample(instruments[instr][char])
-        #print((ts, instr, char, len(sound), len(recording)))
-        recording = recording.overlay(sound, position=ts*FACTOR)
+        if char in instruments[instr]:
+            term = instruments[instr][char].split()
+            sound = load_sample(term[0])
+            if len(term) > 1:
+                sound = eval(' '.join(term), {term[0]: sound})
+
+            #print((ts, instr, char, len(sound), len(recording)))
+            recording = recording.overlay(sound, position=ts*FACTOR)
 
     return recording
 

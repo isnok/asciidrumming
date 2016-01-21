@@ -28,6 +28,11 @@ phrases:
         beat: 3
         pattern: dkd kdk
 
+    shuffle:
+        shuffle: 0.3
+        beat: 2
+        pattern: dk
+
     damdamdam:
         beat: 4
         pattern: D.K. D..k dkdk D.r.
@@ -45,6 +50,10 @@ pieces:
     _2_dokonko: dokonko * 2
     _4_dokonko: dokonko * 4
     _8_dokonko: dokonko * 8
+
+    _2_shuffle: shuffle * 2
+    _4_shuffle: shuffle * 4
+    _8_shuffle: shuffle * 4
 
     fuchi: dondoko * 3 + dokonko
 
