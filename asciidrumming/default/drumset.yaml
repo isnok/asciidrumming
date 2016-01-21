@@ -27,8 +27,28 @@ voices:
 
     # other set
     other:
-        d: taiko3
-        k: taiko3
-        D: taiko4 + 6
-        K: taiko4 + 6
+        d: taiko3 + 3
+        k: taiko3 + 3
+        D: taiko4 + 9
+        K: taiko4 + 9
         r: rim
+
+    # low volume sets
+    shime_low:
+        d: shime1 - 5
+        k: shime2 - 5
+        D: shime3 - 5
+        K: shime3 - 5
+        r: rim - 7
+    taiko_low:
+        d: taiko2 - 5
+        k: taiko2 - 5
+        D: taiko5
+        K: taiko5
+        r: rim - 7
+    other_low:
+        d: taiko3 - 2
+        k: taiko3 - 2
+        D: taiko4 + 4
+        K: taiko4 + 4
+        r: rim - 7

@@ -11,12 +11,12 @@ def read_requirements(name='requirements.txt'):
 
 setup(
     name='asciidrumming',
-    version='0.2',
+    version='0.3',
     description='Ascii-based (drum-)sequencer.',
     url='http://github.com/isnok/asciidrumming',
     author='Konstantin Martini',
     author_email='flyingcircus@example.com',
-    license='None yet',
+    license='MIT',
     packages=['asciidrumming'],
     zip_safe=False,
     install_requires=read_requirements(),

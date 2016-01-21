@@ -24,6 +24,10 @@ phrases:
         beat: 4
         pattern: Dk.k
 
+    dokodon:
+        beat: 4
+        pattern: dkd.
+
     _2_trioles:
         beat: 3
         pattern: dkd kdk
@@ -58,25 +62,38 @@ pieces:
     _2_pause: pause * 2
     _4_pause: pause * 4
     _8_pause: pause * 8
+    _16_pause: pause * 16
 
     _2_dondoko: dondoko * 2
     _3_dondoko: dondoko * 3
     _4_dondoko: dondoko * 4
     _8_dondoko: dondoko * 8
+    _16_dondoko: dondoko * 16
 
     _2_dokonko: dokonko * 2
     _3_dokonko: dokonko * 3
     _4_dokonko: dokonko * 4
     _8_dokonko: dokonko * 8
+    _16_dokonko: dokonko * 16
 
     _2_dokodoko: dokodoko * 2
     _3_dokodoko: dokodoko * 3
     _4_dokodoko: dokodoko * 4
     _8_dokodoko: dokodoko * 8
+    _16_dokodoko: dokodoko * 16
+
+    _2_dokodon: dokodon * 2
+    _3_dokodon: dokodon * 3
+    _4_dokodon: dokodon * 4
+    _8_dokodon: dokodon * 8
+    _16_dokodon: dokodoko * 16
 
     _2_shuffle: shuffle * 2
     _3_shuffle: shuffle * 3
     _4_shuffle: shuffle * 4
-    _8_shuffle: shuffle * 4
+    _8_shuffle: shuffle * 8
+    _16_shuffle: shuffle * 16
 
     _4_trioles: _2_trioles * 2
+    _8_trioles: _2_trioles * 4
+    _16_trioles: _2_trioles * 8
