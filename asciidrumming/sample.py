@@ -19,7 +19,6 @@ def load_sample(name, *dirs):
 def render_to_pydub(flat_song, instruments):
     END_BUFFER = 7
     FACTOR = 1000.0
-    gig = []
 
     length = (flat_song[-1][0] + END_BUFFER) * FACTOR
     recording = silence(length)

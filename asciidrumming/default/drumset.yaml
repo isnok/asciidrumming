@@ -1,11 +1,15 @@
 voices:
+
+    metronome:
+        c: click + 7
+
     # shime set
     shime:
         d: shime1
         k: shime2
         D: shime3
         K: shime3
-        r: click
+        r: rim
 
     # taiko set
     taiko:

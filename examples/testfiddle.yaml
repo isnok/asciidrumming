@@ -28,18 +28,6 @@ phrases:
 
             - D.......
 
-    shuffle_train_1:
-        shuffle: 0.3
-        beat: 2
-        pattern:
-            - DK dk Dk Dk
-
-    shuffle_train_2:
-        shuffle: 0.3
-        beat: 2
-        pattern:
-            - dK dk Dk Dk
-
     damdamdam:
         beat: 4
         pattern: D.K. D..k dkdk D.r.
@@ -48,15 +36,10 @@ phrases:
 pieces:
     _16_dondoko: _8_dokonko * 2
 
-    shuffle_train: ( shuffle_train_1 + shuffle_train_2 ) * 2
-
     fuchi: dondoko * 3 + dokonko
 
 verses:
-    - taiko: _4_shuffle
-    - taiko: _4_pause
-    - taiko: shuffle_train
-    - taiko: _4_pause
-    - taiko: shuffle_train
-    - taiko: mitsu_a
+    - shime: _4_dondoko
+    - shime: _16_dondoko
+      taiko: mitsu_a
 #   - taiko: mitsu_a

@@ -11,7 +11,7 @@ def read_requirements(name='requirements.txt'):
 
 setup(
     name='asciidrumming',
-    version='0.1',
+    version='0.2',
     description='Ascii-based (drum-)sequencer.',
     url='http://github.com/isnok/asciidrumming',
     author='Konstantin Martini',

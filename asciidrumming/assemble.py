@@ -20,7 +20,8 @@ def detect_component(term, phrases):
 def assemble_pieces(phrases, pieces):
     assembled = phrases.copy()
     retry = pieces
-    while retry:
+    todo = []
+    while len(retry) != len(todo):
         todo = retry
         retry = {}
         for name, term in todo.items():

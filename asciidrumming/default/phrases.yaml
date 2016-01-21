@@ -33,6 +33,26 @@ phrases:
         beat: 2
         pattern: dk
 
+    click:
+        beat: 1
+        pattern: c
+
+    _2_clicks:
+        beat: 2
+        pattern: cc
+
+    _3_clicks:
+        beat: 3
+        pattern: ccc
+
+    _4_clicks:
+        beat: 4
+        pattern: cccc
+
+    _5_clicks:
+        beat: 5
+        pattern: ccccc
+
 pieces:
 
     _2_pause: pause * 2
