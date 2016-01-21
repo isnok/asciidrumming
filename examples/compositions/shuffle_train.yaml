@@ -4,25 +4,58 @@ initial:
 
 phrases:
 
-    shuffle_train_1:
+    shuffle_train_a1:
         shuffle: 0.3
         beat: 2
         pattern:
             - DK dk Dk Dk
 
-    shuffle_train_2:
+    shuffle_train_a2:
         shuffle: 0.3
         beat: 2
         pattern:
             - dK dk Dk Dk
 
+    shuffle_train_b:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - Dk dK dK dK
+
+    shuffle_train_c: # but there's more to it...
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - Dk Dk dK dK
+
+    kime:
+        beat: 6
+        pattern:
+            - d..d.. d.d.d. d..d.. d.d.d.
+            - d.d.d. d..d.. d.d.d. d.....
+
 pieces:
 
-    shuffle_train: ( shuffle_train_1 + shuffle_train_2 ) * 2
+    _2_kime: kime * 2
+    shuffle_train_a: ( shuffle_train_a1 + shuffle_train_a2 ) * 2
+    shuffle_train_b: shuffle_train_b * 4
 
 verses:
-    - taiko: _4_shuffle
+
+    - shime: kime
+
+    - taiko: _8_shuffle
+      shime: kime
+
+    - metronome: pause
+
+    - taiko: shuffle_train_a
+      shime: _2_kime
+
+    - taiko: shuffle_train_b
+      shime: _2_kime
+
     - taiko: _4_pause
-    - taiko: shuffle_train
-    - taiko: _4_pause
-    - taiko: shuffle_train
+      shime: kime
+
+    #- taiko: shuffle_train
