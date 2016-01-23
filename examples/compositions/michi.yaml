@@ -1,6 +1,6 @@
 initial:
 
-    bpm: 60
+    bpm: 93
 
 phrases:
 
@@ -28,6 +28,33 @@ phrases:
         beat: 4
         pattern:
             - d.rr dkrr dk.k d.rr
+
+    mitsu_a:
+        beat: 4
+        pattern:
+            - ........
+
+            - D.rrr...
+            - D.rrr...
+            - D.rrr.r.
+            - ..D.K...
+
+            - D.rrr...
+            - D.rrr...
+            - D.rrr.r.
+            - ..D.K...
+
+            - :.D.:.K.
+            - :.D.K...
+
+            - :.D.:.K.
+            - :.D.K...
+
+            - :.dkD.D.
+            - ..D.K...
+
+            - D.......
+
 pieces:
 
     _4_solo: 4 * solo
@@ -41,13 +68,20 @@ verses:
     #- taiko: solo
     #- taiko: _4_berg
 
-    - taiko: _4_solo
-    - taiko: zwischenteil
+    - spoken: doko
+    - spoken: don
+    - spoken: donkon
+    - spoken: don
 
-    - taiko: _4_solo
-    - taiko: _4_berg
-    - taiko: _4_berg
-    - taiko: _4_berg
+    - taiko: mitsu_a
 
-    - taiko: _4_solo
-    - taiko: solo_end
+    #- taiko: _4_solo
+    #- taiko: zwischenteil
+
+    #- taiko: _4_solo
+    #- taiko: _4_berg
+    #- taiko: _4_berg
+    #- taiko: _4_berg
+
+    #- taiko: _4_solo
+    #- taiko: solo_end

@@ -44,6 +44,10 @@ phrases:
         beat: 4
         pattern: DkdKdkDkDk
 
+    slowbreak:
+        beat: 4
+        pattern: dkD. .K.. D..K
+
 pieces:
 
     _4_dondoko: dondoko * 4
@@ -55,39 +59,45 @@ pieces:
 
 verses:
 
-    - taiko: _4_gamela
+    #- spoken: _4_gamela
 
-    - taiko: pause
+    #- taiko: pause
 
-    - taiko: _4_gamelataketake
+    #- taiko: _4_gamelataketake
+    #- taiko: _4_gamela
+    #- taiko: _4_gamelataketake
 
-    - taiko: pause
+    #- taiko: _2_pause
 
-    - taiko: _4_dondoko
-    - taiko: _4_dondoko
+    #- taiko: _4_dondoko
+    #- taiko: _4_dondoko
 
-    - taiko: pause
+    #- taiko: pause
 
     - shime: _4_dondoko
       taiko: _4_dondoko
 
     - shime: fuchi
+      taiko: fuchi
 
     - shime: _4_trioles
-
-    - shime: _4_dondoko
-
-    - taiko: _4_dokonko
-      shime: _4_dondoko
-
-    - taiko: pause
-
-    - bpm: +20
-      taiko: _4_dondoko
-      shime: _4_dokonko
-
-    - shime: fuchi
-      taiko: _4_dondoko
-
-    - shime: don
       taiko: don
+
+    - spoken: don
+
+    #- shime: _4_dondoko
+
+    #- taiko: _4_dokonko
+      #shime: _4_dondoko
+
+    #- taiko: pause
+
+    #- bpm: +20
+      #taiko: _4_dondoko
+      #shime: _4_dokonko
+
+    #- shime: fuchi
+      #taiko: _4_dondoko
+
+    #- shime: don
+      #taiko: don

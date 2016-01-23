@@ -60,9 +60,16 @@ phrases:
 pieces:
 
     _2_pause: pause * 2
+    _3_pause: pause * 3
     _4_pause: pause * 4
     _8_pause: pause * 8
     _16_pause: pause * 16
+
+    _2_doko: doko * 2
+    _3_doko: doko * 3
+    _4_doko: doko * 4
+    _8_doko: doko * 8
+    _16_doko: doko * 16
 
     _2_dondoko: dondoko * 2
     _3_dondoko: dondoko * 3

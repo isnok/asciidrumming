@@ -39,15 +39,25 @@ pieces:
     _2_kime: kime * 2
     shuffle_train_a: ( shuffle_train_a1 + shuffle_train_a2 ) * 2
     shuffle_train_b: shuffle_train_b * 4
+    _24_kime: kime * 24
 
 verses:
 
-    - shime: kime
+    #- shime: _24_kime
+
+    #- shime: _4_pause
 
     - taiko: _8_shuffle
-      shime: kime
 
-    - metronome: pause
+    - taiko: pause
+
+    - taiko: shuffle_train_a
+
+    - taiko: shuffle_train_b
+
+    - taiko: pause
+
+    - shime: kime
 
     - taiko: shuffle_train_a
       shime: _2_kime
