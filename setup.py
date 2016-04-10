@@ -7,7 +7,7 @@ def read_requirements(name='requirements.txt'):
     """ Read reqiurements.txt file into a list of lines, that are
         non-empty, and do not start with a `#`-character.
 
-        >>> len(read_requirements(__file__)) > 23
+        >>> len(read_requirements(__file__)) > 0
         True
     """
 
