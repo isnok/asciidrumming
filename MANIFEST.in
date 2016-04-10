@@ -1,6 +1,6 @@
-include asciidrumming/samples/*.wav
-include asciidrumming/samples/*.ogg
-include asciidrumming/samples/*.mp3
-include asciidrumming/samples/*.flac
-include asciidrumming/samples/*.aiff
-include asciidrumming/default/*
+include samples/*.wav
+include samples/*.ogg
+include samples/*.mp3
+include samples/*.flac
+include samples/*.aiff
+include default/*
