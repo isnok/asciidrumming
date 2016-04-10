@@ -1,4 +1,4 @@
 click
 pydub
-ipython
+#ipython
 pyyaml
