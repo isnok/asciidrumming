@@ -2,6 +2,8 @@
 
 from setuptools import setup
 
+from versioning import get_cmdclass, get_version
+
 def read_requirements(name='requirements.txt'):
 
     with open(name, 'r') as fh:
@@ -9,19 +11,22 @@ def read_requirements(name='requirements.txt'):
 
     return requirements
 
-setup(
+setup_args = dict(
     name='asciidrumming',
-    version='0.3',
+    version=get_version(),
+    cmdclass=get_cmdclass(),
     description='Ascii-based (drum-)sequencer.',
     url='http://github.com/isnok/asciidrumming',
     author='Konstantin Martini',
-    author_email='flyingcircus@example.com',
+    author_email='k@martini.pm',
     license='MIT',
     packages=['asciidrumming'],
-    zip_safe=False,
     install_requires=read_requirements(),
     entry_points = {
         'console_scripts': ['ascii_drummer=asciidrumming.cli:cli'],
     },
     include_package_data=True,
+    zip_safe=False,
 )
+
+if __name__ == '__main__': setup(**setup_args)
