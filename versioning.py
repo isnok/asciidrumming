@@ -349,22 +349,25 @@ def add_to_sdist(base_dir):
 
     source_versionfile, build_versionfile = read_setup_cfg()
     target_versionfile = os.path.join(base_dir, build_versionfile)
-    print("== Rendering:\n%s" % target_versionfile)
-
     versionfile = setup_versioning()
+    static_versionfile = versionfile.render_static_file()
+    print("== Rendering:\n%s\n== To Versionfile: %s" % (static_versionfile, target_versionfile))
+
     try:
+        os.unlink(target_versionfile) #
         with open(target_versionfile, 'w') as fh:
-            fh.write(versionfile.render_static_file())
+            fh.write(static_versionfile)
     except:
         print("=== Could not render static _version.py to sdist!")
 
     self_target = join(base_dir, basename(__file__))
+    print("== Updating:\n%s" % self_target)
     if os.path.exists(self_target):
         os.unlink(self_target)
     try:
         os.link(__file__, self_target)
     except OSError:
-        print("=== Could not add versioning.py to sdist!")
+        print("=== Could not add %s to sdist!" % basename(__file__))
 
 
 class cmd_sdist(_sdist):
