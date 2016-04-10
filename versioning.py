@@ -137,7 +137,8 @@ def setup_versioning():
 
     source_versionfile, build_versionfile = read_setup_cfg()
 
-    versionfile = None if source_versionfile is None else import_file('_version', source_versionfile)
+    print('Importing versionfile: ' + source_versionfile)
+    versionfile = import_file('_version', source_versionfile) if isfile(source_versionfile) else None
 
     get_version = versionfile.get_version if hasattr(versionfile, 'get_version') else get_version
 
@@ -354,7 +355,9 @@ def add_to_sdist(base_dir):
     print("== Rendering:\n%s\n== To Versionfile: %s" % (static_versionfile, target_versionfile))
 
     try:
-        os.unlink(target_versionfile) #
+        # handles the hard link case correctly
+        if os.path.exists(target_versionfile):
+            os.unlink(target_versionfile)
         with open(target_versionfile, 'w') as fh:
             fh.write(static_versionfile)
     except:
@@ -362,12 +365,11 @@ def add_to_sdist(base_dir):
 
     self_target = join(base_dir, basename(__file__))
     print("== Updating:\n%s" % self_target)
-    if os.path.exists(self_target):
-        os.unlink(self_target)
-    try:
-        os.link(__file__, self_target)
-    except OSError:
-        print("=== Could not add %s to sdist!" % basename(__file__))
+    if not os.path.exists(self_target):
+        try:
+            os.link(__file__, self_target)
+        except OSError:
+            print("=== Could not add %s to sdist!" % basename(__file__))
 
 
 class cmd_sdist(_sdist):
