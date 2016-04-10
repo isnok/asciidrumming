@@ -1,8 +1,26 @@
 initial:
 
-    bpm: 80
+    bpm: 85
 
 phrases:
+
+    shuffle_train_intro_1:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - DK dk dk dk
+
+    shuffle_train_intro_2:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - dK dk dk dk
+
+    shuffle_train_4:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - dk dk dk dk
 
     shuffle_train_a1:
         shuffle: 0.3
@@ -16,17 +34,38 @@ phrases:
         pattern:
             - dK dk Dk Dk
 
-    shuffle_train_b:
+    shuffle_train_b_:
         shuffle: 0.3
         beat: 2
         pattern:
             - Dk dK dK dK
 
-    shuffle_train_c: # but there's more to it...
+    shuffle_train_c_: # was there more here? /1-2\?
         shuffle: 0.3
         beat: 2
         pattern:
-            - Dk Dk dK dK
+            - Dk Dk dK dK dk
+
+    shuffle_train_d1:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - Dk dK dk Dk dK dk Dk dK dk Dk dK dk
+#             1   2    3   4    5   6    7   8
+
+    shuffle_train_d2:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - Dk dK dk Dk dK dk Dk dK dk Dk dK ..
+#             1   2    3   4    5   6    7   8
+#
+    shuffle_train_d3:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - Dk dK dk Dk dK dk Dk dK dk Dk D. ..
+#             1   2    3   4    5   6    7  8
 
     kime:
         beat: 6
@@ -34,38 +73,269 @@ phrases:
             - d..d.. d.d.d. d..d.. d.d.d.
             - d.d.d. d..d.. d.d.d. d.....
 
+    shuffle_try_1:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - DK dK Dk dk
+
+    shuffle_try_2:
+        shuffle: 0.3
+        beat: 2
+        pattern:
+            - DK dk dK Dk
+
+    shuffle_check:
+        shuffle: 0.2
+        beat: 4
+        pattern:
+            - D. .. K. .. D. K. .. ..
+            - D. .. K. .. D. .. .. ..
+
+    shuffle_check_1:
+        shuffle: 0.2
+        beat: 4
+        pattern:
+            - D. .k D. .k D. K. .. ..
+            - D. .k D. .k D. .. .. ..
+
+    shuffle_check_2:
+        shuffle: 0.2
+        beat: 4
+        pattern:
+            - Dk dK Dk dK Dk Dk dk dk
+            - Dk dK Dk dK Dk dk dk dk
+
+    shuffle_check_a:
+        shuffle: 0.2
+        beat: 4
+        pattern:
+            - D. .. K. .. D. K. dk dk
+            - D. .. K. .. D. .. .. ..
+
+    shuffle_check_b:
+        shuffle: 0.2
+        beat: 4
+        pattern:
+            - D. .. K. .. D. K. dk dk
+            - D. .. K. .. D. D. D. D.
+
+    shuffle_check_up:
+        shuffle: 0.2
+        beat: 4
+        pattern:
+            - D. .k .. d. D. .k .. d.
+            - D. .k .k .k D. .k .k ..
+
+    #shuffle_check_bridge:
+        #shuffle: 0.2
+        #beat: 4
+        #pattern:
+            #- D. .k .k .k D. .k .k .k
+            #- D. .k .k .k D. .k .k .k
 pieces:
 
     _2_kime: kime * 2
-    shuffle_train_a: ( shuffle_train_a1 + shuffle_train_a2 ) * 2
-    shuffle_train_b: shuffle_train_b * 4
+
+    shuffle_train: shuffle_train_a1 + shuffle_train_a2
+    shuffle_up: shuffle_train_b_
+
+    shuffle_three: shuffle_train * 3
+    _24_shuffle: shuffle * 24
+    shuffle_2count: shuffle_train_d1 * 2
+    shuffle_train_up: shuffle_train + shuffle_up * 4
+    shuffle_up_train: shuffle_up * 4 + shuffle_train
+    shuffle_end: shuffle_train_d1 + shuffle_train_d3
+
+    shuffle_drive: shuffle_train * 4 + shuffle_up * 4 + shuffle_train * 2 + shuffle_up * 2 + shuffle_train + shuffle_up + shuffle_end
+
+    shuffle_train_a: shuffle_train * 2
+    shuffle_train_b: shuffle_train_b_ * 4
+    shuffle_train_c: shuffle_train_c_ * 2
+    shuffle_train_d: shuffle_train_d1 + shuffle_train_d2
     _24_kime: kime * 24
+    #shuffle_train_x: (shuffle_train_a1 + shuffle_train_a2) * 8
+
+    #shuffle_intro: shuffle_train_intro + shuffle_train_4
 
 verses:
+
+    #- shime: _8_shuffle
+    #
+
+    - shime: shuffle_check
+
+    - shime_low: shuffle_check
+      taiko: shuffle_check_a
+    - shime_low: shuffle_check
+      taiko: shuffle_check_a
+
+    - shime_low: shuffle_check
+      taiko: shuffle_check_b
+      other: shuffle_check_1
+    - shime_low: shuffle_check
+      taiko: shuffle_check_b
+      other: shuffle_check_1
+
+    #- shime_low: shuffle_check_up
+    #- shime_low: shuffle_check_up
+
+    - shime_low: shuffle_check_up
+      taiko: shuffle_check_b
+      other: shuffle_check_1
+    - shime_low: shuffle_check_up
+      taiko: shuffle_check_b
+      other: shuffle_check_1
+
+    #- shime_low: shuffle_check_2
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+    #- shime_low: shuffle_check_2
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+
+    #- shime_low: shuffle_check_up
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+    #- shime_low: shuffle_check_up
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+
+    #- shime_low: shuffle_check_2
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+    #- shime_low: shuffle_check_2
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+
+    - shime_low: shuffle_check_1
+      taiko: shuffle_check_b
+      other: shuffle_check_1
+    - shime_low: shuffle_check_1
+      taiko: shuffle_check_b
+      other: shuffle_check_1
+
+    #- shime_low: shuffle_check_bridge
+      #taiko: shuffle_check_b
+      #other: shuffle_check_1
+      #taiko: shuffle_check_bridge
+      #other: shuffle_check_bridge
+
+    - other: shuffle_check_1
+      taiko: shuffle_check_b
+    - other: shuffle_check_1
+      taiko: shuffle_check_b
+
+    - other: shuffle_check
+      taiko: shuffle_check
+
+    - other: shuffle_check
+      taiko: shuffle_check
+
+    #- other: shuffle_check_2
+      #taiko: shuffle_check_b
+    #- other: shuffle_check_2
+      #taiko: shuffle_check_b
+
+    #- other: shuffle_check_1
+      #taiko: shuffle_check_b
+    #- other: shuffle_check_1
+      #taiko: shuffle_check_a
+
+
+
+    #- other: shuffle_drive
+
+
+
+    #- other: shuffle_three
+
+    #- other: shuffle_three
+      #taiko: shuffle_2count
+
+    #- other: shuffle_2count
+      #taiko: shuffle_three
+
+    #- other: shuffle_train_up
+      #taiko: shuffle_up_train
+
+    #- other: shuffle_three
+      #taiko: shuffle_three
+
+    #- other: shuffle_end
+      #taiko: shuffle_end
+
 
     #- shime: _24_kime
 
     #- shime: _4_pause
+    #
+    #- taiko: shuffle_try_1
+    #- taiko: shuffle_try_1
+    #- taiko: shuffle_try_1
+    #- taiko: shuffle_try_1
 
-    - taiko: _8_shuffle
+    #- taiko: pause
 
-    - taiko: pause
+    #- taiko: shuffle_try_2
+    #- taiko: shuffle_try_2
+    #- taiko: shuffle_try_2
+    #- taiko: shuffle_try_2
 
-    - taiko: shuffle_train_a
+    #- taiko: pause
 
-    - taiko: shuffle_train_b
+    #- taiko: _4_shuffle
+    ##- taiko: do
 
-    - taiko: pause
 
-    - shime: kime
 
-    - taiko: shuffle_train_a
-      shime: _2_kime
+    #- taiko: pause
 
-    - taiko: shuffle_train_b
-      shime: _2_kime
+    #- taiko: shuffle_train_intro_1
+    #- taiko: _4_shuffle
+    #- taiko: shuffle_train_intro_1
+    #- taiko: _4_shuffle
 
-    - taiko: _4_pause
-      shime: kime
+    #- taiko: shuffle_train_a1
+    #- taiko: _4_shuffle
+    #- taiko: shuffle_train_a1
+    #- taiko: _4_shuffle
 
-    #- taiko: shuffle_train
+    #- taiko: shuffle_train_a1
+    #- taiko: shuffle_train_intro_2
+    #- taiko: shuffle_train_a1
+    #- taiko: shuffle_train_intro_2
+
+    #- taiko: shuffle_train_a
+    #- taiko: shuffle_train_b
+    #- taiko: shuffle_train_c
+    #- taiko: shuffle_train_d
+
+    #- taiko: shuffle_train_a
+    #- taiko: shuffle_train_b
+    #- taiko: shuffle_train_a
+
+    #- taiko: don
+
+
+
+    #- taiko: shuffle_train_a
+    #- taiko: shuffle_train_a
+
+    #- taiko: shuffle_train_a
+    #- taiko: shuffle_train_b
+
+    #- taiko: pause
+
+    #- shime: kime
+
+    #- taiko: shuffle_train_a
+      #shime: _2_kime
+
+    #- taiko: shuffle_train_b
+      #shime: _2_kime
+
+    #- taiko: _4_pause
+      #shime: kime
+
+    ##- taiko: shuffle_train

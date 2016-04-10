@@ -4,6 +4,10 @@ phrases:
         beat: 1
         pattern: .
 
+    do:
+        beat: 4
+        pattern: d...
+
     don:
         beat: 4
         pattern: D...

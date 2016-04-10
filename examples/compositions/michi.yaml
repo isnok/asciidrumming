@@ -44,16 +44,22 @@ phrases:
             - D.rrr.r.
             - ..D.K...
 
-            - :.D.:.K.
-            - :.D.K...
+            - s.D.s.K.
+            - s.D.K...
 
-            - :.D.:.K.
-            - :.D.K...
+            - s.D.s.K.
+            - s.D.K...
 
-            - :.dkD.D.
+            - Z.dkD.D.
             - ..D.K...
 
             - D.......
+
+    osaka:
+        beat: 4
+        pattern:
+            - dkdk D.K. D... r...
+            - dkdk D.K. D... rrr.
 
 pieces:
 
@@ -65,6 +71,7 @@ pieces:
 
 verses:
 
+    #- taiko: osaka
     #- taiko: solo
     #- taiko: _4_berg
 
@@ -73,7 +80,7 @@ verses:
     - spoken: donkon
     - spoken: don
 
-    - taiko: mitsu_a
+    - spoken: mitsu_a
 
     #- taiko: _4_solo
     #- taiko: zwischenteil
