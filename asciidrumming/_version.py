@@ -15,9 +15,17 @@ template = '''"""
 
 VERSION_INFO = {}
 
+no_version_version = '0'
+git_export_version = '$Format:%d %H$'
+
 def get_version():
     global VERSION_INFO
-    return VERSION_INFO.get('version', '$Format:%d %H$')
+    if 'version' in VERSION_INFO:
+        return VERSION_INFO['version']
+    elif not 'Format' in git_export_version:
+        return git_export_version
+    else:
+        return no_version_version
 '''
 
 exec(template)
@@ -36,44 +44,49 @@ def render_static_file():
 import os
 from os.path import join, dirname, isfile
 
-try:
-    from configparser import ConfigParser
-except:
-    from ConfigParser import ConfigParser
+import sys
+PYTHON = sys.version_info
+configparser_module = 'ConfigParser' if PYTHON.major == 2 else 'configparser'
+configparser = __import__(configparser_module)
 
 
-def find_source_directory():
+def find_source_directory(fake_link=None, fake_absolute=None):
     """ Find a directory in the source tree.
 
         >>> from os.path import isdir
         >>> isdir(find_source_directory())
         True
+        >>> find_source_directory(fake_link=True)
+        'test_relative'
+        >>> find_source_directory(fake_link=True, fake_absolute=True)
+        'test_absolute'
     """
 
-    if not os.path.islink(__file__):
+    if os.path.islink(__file__) or fake_link:
+        link_target = os.readlink(__file__) if not fake_link else 'test_absolute'
+        if link_target.startswith(os.sep) or fake_absolute:
+            return link_target
+        else:
+            return os.path.join(
+                dirname(__file__),
+                link_target,
+            ) if not fake_link else 'test_relative'
+    else:
         return dirname(__file__)
 
-    link_target = os.readlink(__file__)
-    if link_target.startswith(os.sep):
-        return link_target
-    else:
-        return os.path.join(
-            dirname(__file__),
-            link_target,
-        )
-
-def get_setup_cfg():
+def get_setup_cfg(name='setup.cfg'):
     """ Return the nearest directory in the parent dirs,
         that contains a setup.cfg, or None if no such
         parent dir exists.
 
         >>> hasattr(get_setup_cfg(), 'get')
         True
+        >>> get_setup_cfg('_unFinDaBle__fIle_')
     """
 
     current = find_source_directory()
 
-    while not isfile(join(current, 'setup.cfg')):
+    while not isfile(join(current, name)):
         old = current
         current = dirname(current)
         if old == current:
@@ -83,8 +96,8 @@ def get_setup_cfg():
     else:
         # loop was left without a break,
         # so there was a file with the name
-        parser = ConfigParser()
-        parser.read(join(current, 'setup.cfg'))
+        parser = configparser.ConfigParser()
+        parser.read(join(current, name))
         return parser
 
 
@@ -110,7 +123,7 @@ def get_stdout(*command):
 import re
 import sys
 
-pep440_regex = re.compile('((?P<epoch>[0-9]*)!)?(?P<release>[0-9][0-9]*(\.[0-9][0-9]*)*)\.?((?P<pre_stage>a|b|rc)?(?P<pre_ver>[0-9]*))((\.post(?P<post>[0-9]*)))?((\.dev(?P<dev>[0-9]*)))?')
+pep440_regex = re.compile('^((?P<epoch>[0-9]*)!)?(?P<release>[0-9][0-9]*(\.[0-9][0-9]*)*)\.?((?P<pre_stage>a|b|rc)?(?P<pre_ver>[0-9]*))((\.post(?P<post>[0-9]*)))?((\.dev(?P<dev>[0-9]*)))?$')
 
 def parse_pep440(version_string):
     """ PEP440 versions look like this:
@@ -123,6 +136,7 @@ def parse_pep440(version_string):
         Post-release segment: .postN
         Development release segment: .devN
 
+        >>> parse_pep440('no_version')
         >>> parse_pep440('1.2.3.4')['release']
         (1, 2, 3, 4)
         >>> v = parse_pep440('0!1.2.3.4.b5.post6.dev7')
@@ -265,60 +279,91 @@ def gather_vcs_info(prefix):
 def vcs_versioning(version_info):
     """ Use the information from the vcs, and format it nicely.
 
-        >>> vcs_versioning({'vcs_info': {'dirt': ' M flowtool_versioning/dropins/version.py\\n', 'prefix_tag_distances': {'flowtool-versioning-0.7.33': 53, 'flowtool-versioning-0.7.32': 134, 'flowtool-versioning-0.7.34': 37}, 'tag_version': {'normalized': '0.7.34', 'version': '0.7.34', 'release': (0, 7, 34)}, 'latest_tag': 'flowtool-versioning-0.7.34', 'latest_tag_version': '0.7.34', 'latest_tag_commit': 'b25974fb03e02f491ace23d2718a847a6d01853d', 'commit': 'a06e7d03436457883e2bce2ebe7968886943e2bb', 'prefix': 'flowtool-versioning-'}, 'version': '0.7.34+37.git:b25974fb.dirty'})
-        '0.7.34+37.git:b25974fb.dirty'
+        >>> vcs_versioning({'vcs_info': {}})
+        '0'
+        >>> vcs_versioning({'vcs_info': {'commit': 'b838e311995cd969932bad49b9757b95f55c6622',
+        ...  'dirt': ' M ../versioning/flowtool_versioning/dropins/version.py\\n',
+        ...  'latest_tag': 'flowtool-all-0.7.19',
+        ...  'latest_tag_commit': '5d84b2dd0146ac2da8d736147d9c4bb41d4299dd',
+        ...  'latest_tag_version': '0.7.19-boo!',
+        ...  'prefix': 'flowtool-all-',
+        ...  'prefix_tag_distances': {'flowtool-all-0.7.19': 98}},
+        ... 'version': '0.7.19.dev98.dirty'})
+        '0.dirty'
+        >>> vcs_versioning({'vcs_info': {'commit': 'b838e311995cd969932bad49b9757b95f55c6622',
+        ...  'dirt': ' M ../versioning/flowtool_versioning/dropins/version.py\\n',
+        ...  'latest_tag': 'flowtool-all-0.7.19',
+        ...  'latest_tag_commit': '5d84b2dd0146ac2da8d736147d9c4bb41d4299dd',
+        ...  'latest_tag_version': '0.7.19',
+        ...  'prefix': 'flowtool-all-',
+        ...  'prefix_tag_distances': {'flowtool-all-0.7.19': 0},
+        ...  'tag_version': {'normalized': '0.7.19',
+        ...   'release': (0, 7, 19),
+        ...   'version': '0.7.19'}},
+        ... 'version': '0.7.19.dev98.dirty'})
+        '0.7.19.dirty'
+        >>> vcs_versioning({'vcs_info': {'commit': 'b838e311995cd969932bad49b9757b95f55c6622',
+        ...  'dirt': '',
+        ...  'latest_tag': 'flowtool-all-0.7.19',
+        ...  'latest_tag_commit': '5d84b2dd0146ac2da8d736147d9c4bb41d4299dd',
+        ...  'latest_tag_version': '0.7.19.dev2',
+        ...  'prefix': 'flowtool-all-',
+        ...  'prefix_tag_distances': {'flowtool-all-0.7.19': 98},
+        ...  'tag_version': {'normalized': '0.7.19',
+        ...   'release': (0, 7, 19),
+        ...   'version': '0.7.19'}},
+        ... 'version': '0.7.19.dev98.dirty'})
+        '0.7.19.dev100'
+        >>> vcs_versioning({'vcs_info': {'commit': 'b838e311995cd969932bad49b9757b95f55c6622',
+        ...  'dirt': ' M ../versioning/flowtool_versioning/dropins/version.py\\n',
+        ...  'latest_tag': 'flowtool-all-0.7.19',
+        ...  'latest_tag_commit': '5d84b2dd0146ac2da8d736147d9c4bb41d4299dd',
+        ...  'latest_tag_version': '0.7.19',
+        ...  'prefix': 'flowtool-all-',
+        ...  'prefix_tag_distances': {'flowtool-all-0.7.19': 98}},
+        ... 'version': '0.7.19.dev98.dirty'})
+        '0.7.19.dev98.dirty'
     """
 
     vcs_info = version_info['vcs_info']
 
     if not 'latest_tag' in vcs_info:
-        return
+        return '0'
 
     tag = vcs_info['latest_tag']
     distance = vcs_info['prefix_tag_distances'][tag]
 
-    vcs_version = vcs_info['latest_tag_version']
+    vcs_version = parse_pep440(vcs_info['latest_tag_version'])
 
-    if distance:
-        commit = vcs_info['latest_tag_commit'][:8]
-        vcs_version += '+%s.git:%s' % (distance, commit)
+    if vcs_version and distance:
+        if 'dev_release' in vcs_version:
+            vcs_version['dev_release'] += distance
+        else:
+            vcs_version['dev_release'] = distance
+
+        vcs_version = normalize_pep440(**vcs_version)
+    elif vcs_version:
+        vcs_version = normalize_pep440(**vcs_version)
+    elif not vcs_version:
+        vcs_version = '0'
 
     if vcs_info['dirt']:
         vcs_version += '.dirty'
 
     return vcs_version
 
-def snapshot_versioning(version_info):
-    """ Just use the pep440-validated tag-version and add -SNAPSHOT if git is dirty.
 
-        >>> snapshot_versioning({'vcs_info': {}})
-        >>> snapshot_versioning({'vcs_info': {'dirt': ' M flowtool_versioning/dropins/version.py\\n', 'prefix_tag_distances': {'flowtool-versioning-0.7.33': 53, 'flowtool-versioning-0.7.32': 134, 'flowtool-versioning-0.7.34': 37}, 'tag_version': {'normalized': '0.7.34', 'version': '0.7.34', 'release': (0, 7, 34)}, 'latest_tag': 'flowtool-versioning-0.7.34', 'latest_tag_version': '0.7.34', 'latest_tag_commit': 'b25974fb03e02f491ace23d2718a847a6d01853d', 'commit': 'a06e7d03436457883e2bce2ebe7968886943e2bb', 'prefix': 'flowtool-versioning-'}, 'version': '0.7.34+37.git:b25974fb.dirty'})
-        '0.7.34-SNAPSHOT'
-    """
+setup_cfg = get_setup_cfg()
+prefix = setup_cfg.get('versioning', 'tag_prefix') if setup_cfg else ''
+vcs_info = gather_vcs_info(prefix)
+VERSION_INFO.update(
+    vcs_info=vcs_info,
+)
 
-    if not 'tag_version' in version_info['vcs_info']:
-        return
+assemble_version = vcs_versioning
+#assemble_version = snapshot_versioning
 
-    version = version_info['vcs_info']['tag_version']['version']
-    if version_info['vcs_info']['dirt']:
-        version += '-SNAPSHOT'
+version = assemble_version(VERSION_INFO)
 
-    return version
-
-
-try:
-    setup_cfg = get_setup_cfg()
-    prefix = setup_cfg.get('versioning', 'tag_prefix') if setup_cfg else ''
-    vcs_info = gather_vcs_info(prefix)
-    VERSION_INFO.update(
-        vcs_info=vcs_info,
-    )
-
-    assemble_version = vcs_versioning
-    #assemble_version = snapshot_versioning
-
-    version = assemble_version(VERSION_INFO)
-
-    if version:
-        VERSION_INFO['version'] = version
-except: pass
+if version:
+    VERSION_INFO['version'] = version
