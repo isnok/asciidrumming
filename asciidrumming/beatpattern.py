@@ -56,12 +56,11 @@ class Phrase:
 
     def __mul__(self, other):
         new = Phrase('', beat=1)
-        for i in range(other):
+        for i in range(int(other)):
             new += self
         return new
 
-    def __rmul__(self, other):
-        return self.__mul__(int(other))
+    __rmul__ = __mul__
 
     def render(self, offset=0, effects=None):
         now = Fraction(offset, 1)

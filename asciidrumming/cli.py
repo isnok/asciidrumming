@@ -22,6 +22,7 @@ from .config import yamload
 def cli(**kwd):
     return kwd
 
+from .ascii_tracks import AsciiTrack
 
 @cli.command()
 def drum():

@@ -49,4 +49,3 @@ def render_to_pydub(flat_song, instruments):
             recording = recording.overlay(sound, position=ts*FACTOR)
 
     return recording
-
